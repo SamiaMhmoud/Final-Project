@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media</title>
+    <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- ===Modals=== -->
+    <!-- Login Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Username</label>
+                    <input type="text" class="form-control" id="username-input" value="yaarob99">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Passward</label>
+                    <input type="password" class="form-control" id="password-input" value="j22342324">
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn"id="login-btn"onclick="loginBtnClicked()">Login</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Login Modal // -->
+    <!-- Register Modal -->
+    <div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register A New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Username</label>
+                    <input type="text" class="form-control" id="register-username-input">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">name</label>
+                    <input type="text" class="form-control" id="register-name-input">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Passward</label>
+                    <input type="password" class="form-control" id="register-password-input">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Profile Image</label>
+                    <input type="file" class="form-control" id="register-image-input">
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn"id="login-btn"onclick="registerBtnClicked()">Register</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Register Modal // -->
+    <!-- Add Modal -->
+    <div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="post-modal-title">Create New Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Title</label>
+                    <input type="text" class="form-control" id="new-post-title">
+                    <input type="hidden" id="post-id-input" value="">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" id="new-post-body" class="w-100"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Image</label>
+                    <input type="file" class="form-control" id="new-post-image">
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn"id="post-modal-submit-btn"onclick="createPostClicked()">Create</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- // Add Modal // -->
+    <!-- delete Modal -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="post-modal-title">Are you sure you want to delete the post? 
+                    <span id="delete-post-name"></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <input type="hidden" value="" id="delete-post-id">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn btn-danger" onclick="ConfirmDelete()">Delete</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- // delet Modal // -->
+    <!-- ===Modals=== -->
+    <!-- =====Loader==== -->
+    <div class="loader">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <!-- //=====Loader====// -->
+    <!-- Alert -->
+    <div class="alert-container">
+        
+    </div>
+    <!--// Alert //-->
+    <!-- Add Btn -->
+    <div class="add position-fixed hide"onclick="addBtnClicked()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+        </svg>
+    </div>
+    <!-- Add Btn -->
+
+    <!-- Navigtion Bar Cont-->
+    <div class="container nav-container lef mt-2">
+        <div class="col-7 m-auto">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#" onclick="removeHide(postInfoContainer,userProfileContainer,mainContainer),active(homePage,profilePage)">Media</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav nav-links">
+                        <a class="nav-link active home-page" aria-current="page" href="#" onclick="removeHide(postInfoContainer,userProfileContainer,mainContainer),active(homePage,profilePage)">Home</a>
+                        <a class="nav-link profile-page" href="#" class="show-user-profile">Profile</a>
+                    </div>
+                    </div>
+                </div>
+                <!-- Non-Logged in User -->
+                <div class="d-flex w-100 justify-content-end" id="login-Div">
+                    <button type="button" class="btn btn-outline main-btn mx-2 login-home-btn"data-bs-toggle="modal" data-bs-target="#login-modal">Login</button>
+                    <button type="button" class="btn btn-outline main-btn register-btn" data-bs-toggle="modal" data-bs-target="#register-modal">Register</button>
+                </div>
+                <!-- // Non-Logged in User // -->
+
+                <!-- Loged in User -->
+                <div class="d-flex w-100 justify-content-end hide" id="logout-Div">
+                    <div class="user-info mx-2">
+                        <img src="" alt="User" class="nav-user-profile">
+                        <span class="show-user-profile"></span>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" id="logout-btn" onclick="logout()">Logout</button>
+                </div>
+                <!-- // Loged in User // -->
+            </nav>
+        </div>
+    </div>
+    <!-- Navigtion Bar Cont -->
+
+    <!-- Main Cont -->
+    <div class="container main-container">
+        <div class="col-7 m-auto">
+            <!-- Posts -->
+            <div class="posts my-5">
+            </div>
+            <!-- Posts -->
+        </div>
+    </div>
+    <!-- // Main Cont // -->
+    <!-- Post Information Container -->
+        <div class="container hide my-4" id="post-info-container">
+            <div class="col-7 m-auto">
+                <div id="post-info">
+
+                </div>
+                <div id="comments">
+                    
+                </div>
+                <div id="add-comment">
+                    <input type="text" >
+                    <button class="second-btn comment-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    <!-- // Post Information Container // -->
+
+    <!-- User Profile -->
+    <div class="container hide user-profile-container">
+        <div class="col-7 m-auto">
+            <div class="user-profile my-5 d-flex align-items-center">
+                <div class="user-info">
+                    <img src="" alt="User" class="rounded-circle user-profile-img">
+                    <div>
+                        <h5 id="profile-username"></h5>
+                        <h5 id="profile-name"></h5>
+                    </div>
+                </div>
+                <div class="posts-info">
+                    <div class="post-counts">
+                        <span id="number-of-posts">0</span>
+                        <span class="text">Posts</span>
+                    </div>
+                    <div class="comments-counts">
+                        <span id="number-of-comments">0</span>
+                        <span class="text">Comments</span>
+                    </div>
+                </div>
+            </div>
+            <div class="user-posts-container">
+                <h4><span class="auther-username"></span> Posts</h4>
+                <!-- Posts -->
+                <div class="my-5" id="user-posts">
+                </div>
+                <!-- Posts -->
+            </div>
+        </div>
+    </div>
+    <!-- // User Profile // -->
+    <script src="script.js"></script>
+</body>
+</html>
